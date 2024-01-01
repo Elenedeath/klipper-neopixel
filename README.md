@@ -26,7 +26,7 @@ The template of NeoPixel is changed by a macro. This is very handy in case you w
 ## Use
 
 ```
-NEOPIXEL_DISPLAY LED="led_name" TYPE=template_type MODE=template_mode
+NEOPIXEL_DISPLAY LED="led_name" TYPE=template_type MODE=template_mode NUMBERS=numbers
 ```
 ### LED
 Your led name from neopixel cfg section
@@ -50,6 +50,11 @@ Your led name from neopixel cfg section
 
 You can combine any **TYPE** with any **MODE**.
 
+### NUMBERS
+
+`16` numbers of leds you want to use on the neopixel strip, only needed on progress mode
+
+You can combine any **TYPE** with any **MODE**.
 
 ## Examples
 
@@ -60,13 +65,23 @@ NEOPIXEL_DISPLAY LED="my_led" TYPE=extruder_temp MODE=glow
 This macro command will show the extruder temperature in glow mode.
 
 ```
-NEOPIXEL_DISPLAY LED="my_led" TYPE=print_percent MODE=progress
+NEOPIXEL_DISPLAY LED="my_led" TYPE=print_percent MODE=progress NUMBERS=16
 ```
 
 This macro command will show print completion in progress mode. 
 
 ```
-NEOPIXEL_DISPLAY LED="my_led" TYPE=print_speed MODE=progress
+NEOPIXEL_DISPLAY LED="my_led" TYPE=print_speed MODE=progress NUMBERS=32
 ```
 
 This macro command will show print speed in progress mode.
+
+## Clear Template
+
+You can change between templates without clear. But as long as you have a template assigned to a LED you can't change its color because the template controls the led. You need to clear the template and then you can use SET_LED commands to manage the LED's color settings.
+
+```
+NEOPIXEL_DISPLAY LED="my_led" TYPE=clear
+```
+
+This macro command will clear any previous template assigned to the LED and turn it off.
